@@ -1,0 +1,71 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: dpo_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dpo
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database-init/mysql:/docker-entrypoint-initdb.d
+
+  postgres:
+    image: postgres:15
+    container_name: dpo_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dpo
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database-init/postgres:/docker-entrypoint-initdb.d
+
+  mariadb:
+    image: mariadb:10.11
+    container_name: dpo_mariadb
+    ports:
+      - "3308:3306"
+    environment:
+      - MARIADB_ROOT_PASSWORD=root_password
+      - MARIADB_DATABASE=dpo
+      - MARIADB_USER=dpo_readonly
+      - MARIADB_PASSWORD=readonly_password
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: dpo_mssql
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SuperStrongP@ssw0rd!
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+  mongodb:
+    image: mongo:latest
+    container_name: dpo_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:latest
+    container_name: dpo_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql_data:
+  postgres_data:
+  mariadb_data:
+  mssql_data:
+  mongo_data:

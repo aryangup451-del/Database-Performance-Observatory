@@ -1,0 +1,23 @@
+{
+  "name": "seeder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "dotenv": "^17.4.2",
+    "mariadb": "^3.5.3",
+    "mssql": "^12.7.0",
+    "mysql2": "^3.24.2",
+    "pg": "^8.23.0",
+    "sqlite3": "^6.0.1"
+  },
+  "allowScripts": {
+    "sqlite3@6.0.1": true
+  }
+}
