@@ -28,6 +28,7 @@ DPO is a full-stack performance benchmarking dashboard. You write SQL once; DPO 
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/aryangup451-del/Database-Performance-Observatory)
 
 ---
 
@@ -157,58 +158,44 @@ graph TB
 
 ---
 
-## Quick Start
+## Interviewer / Reviewer Guide (1-Click Run)
 
-### 1. Clone
+To easily review this project without installing 6 databases on your local machine, you can run the entire stack in **GitHub Codespaces**.
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/aryangup451-del/Database-Performance-Observatory)
+
+1. Click the button above to launch a free 32GB cloud environment.
+2. Once the VS Code environment loads in your browser, open a new Terminal.
+3. Run the master start command:
+   ```bash
+   npm start
+   ```
+4. This automated script will:
+   - Start all databases via Docker Compose
+   - Wait for them to initialize
+   - Seed test data
+   - Start the backend API and frontend dashboard concurrently
+5. A popup will appear in the bottom right corner with the **Forwarded Port (5173)** — click **Open in Browser** to view the live dashboard!
+
+---
+
+## Local Developer Setup
+
+If you prefer to run it locally:
+
+### 1. Clone & Install
 ```bash
 git clone https://github.com/aryangup451-del/Database-Performance-Observatory.git
 cd Database-Performance-Observatory
+npm run setup
 ```
 
-### 2. Start databases with Docker
-
+### 2. Start the Stack
 ```bash
-# Core databases (MySQL, PostgreSQL, MariaDB, MSSQL, MongoDB, Redis)
-docker-compose up -d
-
-# Optional: Enterprise databases (Oracle, DB2) — requires 12+ GB RAM
-docker-compose -f docker-compose.enterprise.yml up -d
+npm start
 ```
 
-### 3. Seed test data
-
-```bash
-cd seeder
-npm install
-node seed.js
-```
-
-### 4. Start the backend
-
-```bash
-cd backend
-npm install
-node src/index.js
-```
-
-### 5. Start the frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-### 6. Open in browser
-
-```
-http://localhost:5173
-```
-
-Then write any SQL query and click **Run Analysis** to race it across all engines.
-
----
+*Note: You must have Docker Desktop installed and running to support the backend databases.*
 
 ## API Reference
 

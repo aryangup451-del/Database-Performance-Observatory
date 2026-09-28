@@ -1,0 +1,19 @@
+{
+  "name": "database-performance-observatory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root package for managing DPO stack",
+  "scripts": {
+    "setup": "npm install && npm run install:all",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install && cd ../seeder && npm install",
+    "dbs:up": "docker-compose up -d",
+    "dbs:down": "docker-compose down",
+    "dbs:seed": "cd seeder && node seed.js",
+    "dev:backend": "cd backend && npm start",
+    "dev:frontend": "cd frontend && npm run dev -- --host",
+    "start": "npm run dbs:up && echo '⏳ Waiting 15 seconds for databases to initialize...' && sleep 15 && npm run dbs:seed && npx concurrently -n \"BACKEND,FRONTEND\" -c \"green,blue\" \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
