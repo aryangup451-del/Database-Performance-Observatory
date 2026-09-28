@@ -1,12 +1,8 @@
 {
   "name": "DPO Dev Environment",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye",
   "features": {
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
-      "version": "latest",
-      "enableNonRootDocker": "true",
-      "moby": "true"
-    }
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
   "forwardPorts": [5173, 3001],
   "portsAttributes": {
@@ -22,7 +18,6 @@
   "postCreateCommand": "npm run setup",
   "customizations": {
     "vscode": {
-      "settings": {},
       "extensions": [
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
